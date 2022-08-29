@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, memo } from "react";
+import { func } from 'prop-types';
+import { Outlet } from "react-router-dom";
+import GlobalStyle from './GlobalStyles';
+import Header from './components/Header';
+import { useActions } from './hooks';
+import { fetchCharacters } from './actions';
 
-function App() {
+
+const App = ({
+  fetchInitialCharacters,
+}) => {
+  useEffect(() => {
+    fetchInitialCharacters();
+  }, [fetchInitialCharacters])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Header />
+      <Outlet />
+    </>
   );
 }
 
-export default App;
+App.propTypes = {
+  fetchInitialCharacters: func.isRequired,
+}
+
+const MemoizedApp = memo(App);
+
+const AppContainer = () => {
+  const requestCharacters = useActions(fetchCharacters);
+
+  const fetchInitialCharacters = () => requestCharacters({page: 1});
+
+  return (
+    <MemoizedApp fetchInitialCharacters={fetchInitialCharacters}/>
+  );
+}
+
+export default memo(AppContainer);
