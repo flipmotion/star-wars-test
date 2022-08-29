@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import { createRouterReducer } from '@lagunovsky/redux-react-router'
-import {createMemoryHistory} from 'history';
+import {createBrowserHistory} from 'history';
 import {generalReducer} from '../reducers';
 
-export const history = createMemoryHistory();
+export const history = createBrowserHistory();
 
 export const getReducers = () =>
   combineReducers({
