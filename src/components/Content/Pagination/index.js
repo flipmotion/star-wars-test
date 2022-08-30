@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { number, func, array } from 'prop-types';
 import Pagination from 'react-bootstrap/Pagination';
 import { useSelector } from 'react-redux';
 import { useActions } from '../../../hooks';
@@ -39,6 +40,18 @@ const PaginationList = ({
     </Pagination>
   );
 };
+
+PaginationList.propTypes = {
+  page: number,
+  next: number,
+  prev: number,
+  pages: array,
+  onNextPage: func,
+  onPrevPage: func,
+  onFirstPage: func,
+  onLastPage: func,
+  onPage: func,
+}
 
 const MemoizedPaginationList = memo(PaginationList);
 

@@ -54,4 +54,4 @@ export const goToCharacter = ({ id }) => dispatch => {
   
 };
 
-export const goToMainPage = () => dispatch => dispatch(push('/'));
+export const goToMainPage = () => dispatch => dispatch(push('/list/1'));

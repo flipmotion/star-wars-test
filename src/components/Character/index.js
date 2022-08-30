@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { string } from 'prop-types';
 import {
   Container,
   Row,
@@ -31,6 +32,16 @@ const Character = ({
     </Container>
   );
 };
+
+Character.propTypes = {
+  birth_year: string,
+  name: string,
+  created: string,
+  edited: string,
+  eye_color: string,
+  gender: string,
+  skin_color: string,
+}
 
 const MemoizedCharacter = memo(Character);
 

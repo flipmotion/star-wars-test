@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { string } from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import { useActions } from '../../../hooks';
 import { goToCharacter } from '../../../actions';
@@ -19,6 +20,11 @@ const Item = ({name, url}) => {
       </Card.Body>
     </Card>
   );
+};
+
+Item.propTypes = {
+  name: string,
+  url: string,
 };
 
 export default memo(Item);
