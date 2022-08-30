@@ -8,41 +8,7 @@ const setIsLoading = ({isLoading}) => dispatch => dispatch({
 })
 
 export const fetchCharacters = ({page = 1}) => (dispatch, getState) => {
-  const {
-    general,
-  } = getState();
-
-  dispatch(setIsLoading({isLoading: true}));
-  dispatch({
-    type: actions.FETCH_CHARACTERS_REQUEST,
-    page,
-  });
-
-  api.get.characters({page}).then(
-    response => {
-      const nextUrl = response.next ? new URL(response.next).search : '';
-      const prevUrl = response.previous ? new URL(response.previous).search : '';
-      const next = +(nextUrl.replace(/\D/g, ''));
-      const prev = +(prevUrl.replace(/\D/g, ''));
-      const totalPages = Math.ceil(response.count / general.perPage);
-
-      dispatch({
-        type: actions.FETCH_CHARACTERS_SUCCESS,
-        characters: response.results,
-        next: !next ? null : next,
-        prev: !prev ? null : prev,
-        totalPages,
-      })
-      dispatch(setIsLoading({isLoading: false}));
-    },
-    error => {
-      dispatch({
-        type: actions.FETCH_CHARACTERS_FAILURE,
-        error
-      })
-      dispatch(setIsLoading({isLoading: false}));
-    }
-  );
+  dispatch(push(`/list/${page}`));
 }
 
 export const goToCharacter = ({ id }) => dispatch => {

@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import { createRouterReducer } from '@lagunovsky/redux-react-router'
 import {createBrowserHistory} from 'history';
 import {generalReducer} from '../reducers';
+import paginationMiddleware from '../middlewares';
 
 export const history = createBrowserHistory();
 
@@ -11,4 +12,4 @@ export const getReducers = () =>
     general: generalReducer,
   });
 
-export const middlewares = [];
+export const middlewares = [paginationMiddleware];

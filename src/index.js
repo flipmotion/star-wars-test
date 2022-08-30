@@ -18,7 +18,7 @@ root.render(
       <ReduxRouter history={history} store={store}>
         <Routes>
           <Route path="/" element={<App/>}>
-            <Route index element={<Content />}/>
+            <Route path="/list/:pageId" element={<Content />}/>
             <Route path="character/:characterId" element={<Character />}/>
           </Route>
         </Routes>

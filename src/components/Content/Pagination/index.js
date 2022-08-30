@@ -1,8 +1,9 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { useSelector } from 'react-redux';
 import { useActions } from '../../../hooks';
 import { fetchCharacters } from '../../../actions';
+
 
 const PaginationList = ({
   page,
@@ -21,7 +22,7 @@ const PaginationList = ({
   const onSelectPage = selectedPage => () => onPage(selectedPage);
 
   return (
-    <Pagination>
+    <Pagination className="justify-content-center">
       <Pagination.First disabled={isPrevDisabled} onClick={onFirstPage} />
       <Pagination.Prev disabled={isPrevDisabled} onClick={onPrevPage} />
       {pages.map(pageItem => (
